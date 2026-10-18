@@ -3,275 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Record Collection</title>
-  <meta name="description" content="A small, lovingly kept vinyl record collection — pressings worth dropping the needle on.">
+  <title>My Record Collection — The Wall</title>
+  <meta name="description" content="A wall of vinyl: tilted sleeves, layered albums and records that slide out toward you. Your music, reimagined as records.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%B5%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-  <!-- ============================ HERO ============================ -->
-  <header class="hero">
-    <div class="hero__inner">
+  <!-- film grain + warm spotlights -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="lights" aria-hidden="true">
+    <span class="lights__cone lights__cone--a"></span>
+    <span class="lights__cone lights__cone--b"></span>
+    <span class="lights__cone lights__cone--c"></span>
+  </div>
 
-      <div class="hero__text">
-        <p class="hero__eyebrow">Side A · Track 01</p>
-        <h1 class="hero__title">My Record<br>Collection</h1>
-        <p class="hero__tagline">
-          Pressings pulled from the shelf in the corner of the room — the ones
-          that still get played with the lights low.
-        </p>
-        <div class="hero__rule" aria-hidden="true"></div>
-      </div>
-
-      <!-- decorative spinning record -->
-      <div class="hero__art" aria-hidden="true">
-        <div class="disc">
-          <div class="disc__grooves"></div>
-          <div class="disc__label">
-            <span class="disc__label-text">33⅓<br>RPM</span>
-          </div>
-          <div class="disc__hole"></div>
-        </div>
-      </div>
-
-    </div>
+  <!-- ============================ TOP BAR ============================ -->
+  <header class="topbar">
+    <span class="topbar__brand">The Wall</span>
+    <button class="sound" id="soundToggle" type="button"
+            aria-pressed="false" title="Toggle vinyl crackle">
+      <span class="sound__dot" aria-hidden="true"></span>
+      <span class="sound__label">Crackle off</span>
+    </button>
   </header>
 
-  <!-- ========================= COLLECTION ========================= -->
-  <main class="collection">
-    <div class="collection__head">
-      <h2 class="collection__title">The Shelf</h2>
-      <p class="collection__count">Nine records · alphabetical by habit, not by title</p>
+  <!-- ============================= STAGE ============================= -->
+  <main class="stage" id="stage">
+
+    <!-- background wall: decorative, diagonal rows top-left -> bottom-right -->
+    <div class="wall" aria-hidden="true">
+      <div class="wall__row" style="--r:0">
+        <span class="sleeve" style="--t:-4deg; --y:6px;  --a:#7a4526; --b:#2a1a10;">FM</span>
+        <span class="sleeve" style="--t:3deg;  --y:-8px; --a:#8a2020; --b:#2b0f0f;">MJ</span>
+        <span class="sleeve" style="--t:-2deg; --y:10px; --a:#1f3d5c; --b:#0d1a26;">MD</span>
+        <span class="sleeve" style="--t:5deg;  --y:-4px; --a:#4a6b1f; --b:#18210c;">TB</span>
+        <span class="sleeve" style="--t:-3deg; --y:8px;  --a:#1f2a5c; --b:#0e1224;">JM</span>
+      </div>
+      <div class="wall__row" style="--r:1">
+        <span class="sleeve" style="--t:4deg;  --y:-6px; --a:#3a2260; --b:#160e26;">PF</span>
+        <span class="sleeve" style="--t:-5deg; --y:9px;  --a:#6b3f1f; --b:#24170d;">MG</span>
+        <span class="sleeve" style="--t:2deg;  --y:-10px;--a:#6b1f3a; --b:#260e17;">TH</span>
+        <span class="sleeve" style="--t:-3deg; --y:5px;  --a:#1f5c4d; --b:#0c2620;">MB</span>
+        <span class="sleeve" style="--t:6deg;  --y:-3px; --a:#5c4a1f; --b:#241e0c;">SD</span>
+      </div>
+      <div class="wall__row" style="--r:2">
+        <span class="sleeve" style="--t:-6deg; --y:7px;  --a:#5c1f4a; --b:#240e1e;">SW</span>
+        <span class="sleeve" style="--t:3deg;  --y:-9px; --a:#1f4a5c; --b:#0c1e26;">KT</span>
+        <span class="sleeve" style="--t:-2deg; --y:4px;  --a:#7a2618; --b:#2b100c;">AR</span>
+        <span class="sleeve" style="--t:5deg;  --y:-7px; --a:#2b5c1f; --b:#10240c;">NL</span>
+        <span class="sleeve" style="--t:-4deg; --y:11px; --a:#4a1f5c; --b:#1c0e24;">BL</span>
+      </div>
+      <div class="wall__row" style="--r:3">
+        <span class="sleeve" style="--t:2deg;  --y:-5px; --a:#5c511f; --b:#24200c;">AV</span>
+        <span class="sleeve" style="--t:-5deg; --y:8px;  --a:#1f305c; --b:#0c1424;">CE</span>
+        <span class="sleeve" style="--t:4deg;  --y:-8px; --a:#5c2b1f; --b:#24110c;">GT</span>
+        <span class="sleeve" style="--t:-3deg; --y:6px;  --a:#1f5c3a; --b:#0c2417;">PS</span>
+        <span class="sleeve" style="--t:6deg;  --y:-4px; --a:#5c1f2b; --b:#240e13;">ID</span>
+      </div>
     </div>
 
-    <div class="grid">
+    <!-- featured albums: layered diagonal cascade, interactive -->
+    <div class="featured" id="featured">
 
-      <!-- 1 -->
-      <article class="card" style="--a:#7a4526; --b:#241408; --label:#e8b04b;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">FM</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
+      <article class="rec" data-id="0" role="button" tabindex="0"
+               aria-expanded="false" aria-label="Rumours by Fleetwood Mac"
+               data-title="Rumours" data-artist="Fleetwood Mac"
+               data-year="1977" data-genre="Rock"
+               style="--i:0; --rot:-5deg; --a:#7a4526; --b:#241408; --label:#e8b04b;">
+        <div class="rec__sleeve">
+          <span class="rec__mono">FM</span>
+          <span class="rec__name">Rumours</span>
         </div>
-        <div class="card__body">
-          <h3 class="card__title">Rumours</h3>
-          <p class="card__artist">Fleetwood Mac</p>
-          <div class="card__meta">
-            <span class="year">1977</span>
-            <span class="genre">Rock</span>
-          </div>
+        <div class="rec__disc" aria-hidden="true">
+          <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
+        <template class="rec__tracks">
+          <li>Second Hand News</li><li>Dreams</li>
+          <li>Never Going Back Again</li><li>Don't Stop</li><li>Go Your Own Way</li>
+        </template>
       </article>
 
-      <!-- 2 -->
-      <article class="card" style="--a:#8a2020; --b:#1c0b0b; --label:#e2574a;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">MJ</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
+      <article class="rec" data-id="1" role="button" tabindex="0"
+               aria-expanded="false" aria-label="Kind of Blue by Miles Davis"
+               data-title="Kind of Blue" data-artist="Miles Davis"
+               data-year="1959" data-genre="Jazz"
+               style="--i:1; --rot:4deg; --a:#1f3d5c; --b:#0b141d; --label:#5aa3e0;">
+        <div class="rec__sleeve">
+          <span class="rec__mono">MD</span>
+          <span class="rec__name">Kind of Blue</span>
         </div>
-        <div class="card__body">
-          <h3 class="card__title">Thriller</h3>
-          <p class="card__artist">Michael Jackson</p>
-          <div class="card__meta">
-            <span class="year">1982</span>
-            <span class="genre">Pop</span>
-          </div>
+        <div class="rec__disc" aria-hidden="true">
+          <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
+        <template class="rec__tracks">
+          <li>So What</li><li>Freddie Freeloader</li>
+          <li>Blue in Green</li><li>All Blues</li><li>Flamenco Sketches</li>
+        </template>
       </article>
 
-      <!-- 3 -->
-      <article class="card" style="--a:#1f3d5c; --b:#0b141d; --label:#5aa3e0;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">MD</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
+      <article class="rec" data-id="2" role="button" tabindex="0"
+               aria-expanded="false" aria-label="The Dark Side of the Moon by Pink Floyd"
+               data-title="The Dark Side of the Moon" data-artist="Pink Floyd"
+               data-year="1973" data-genre="Prog Rock"
+               style="--i:2; --rot:-3deg; --a:#3a2260; --b:#130b1e; --label:#a566e0;">
+        <div class="rec__sleeve">
+          <span class="rec__mono">PF</span>
+          <span class="rec__name">Dark Side</span>
         </div>
-        <div class="card__body">
-          <h3 class="card__title">Kind of Blue</h3>
-          <p class="card__artist">Miles Davis</p>
-          <div class="card__meta">
-            <span class="year">1959</span>
-            <span class="genre">Jazz</span>
-          </div>
+        <div class="rec__disc" aria-hidden="true">
+          <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
+        <template class="rec__tracks">
+          <li>Speak to Me</li><li>Breathe</li>
+          <li>Time</li><li>The Great Gig in the Sky</li><li>Money</li>
+        </template>
       </article>
 
-      <!-- 4 -->
-      <article class="card" style="--a:#4a6b1f; --b:#141d0a; --label:#d7c94b;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">TB</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
+      <article class="rec" data-id="3" role="button" tabindex="0"
+               aria-expanded="false" aria-label="Remain in Light by Talking Heads"
+               data-title="Remain in Light" data-artist="Talking Heads"
+               data-year="1980" data-genre="New Wave"
+               style="--i:3; --rot:5deg; --a:#6b1f3a; --b:#1e0b12; --label:#e05a8a;">
+        <div class="rec__sleeve">
+          <span class="rec__mono">TH</span>
+          <span class="rec__name">Remain in Light</span>
         </div>
-        <div class="card__body">
-          <h3 class="card__title">Abbey Road</h3>
-          <p class="card__artist">The Beatles</p>
-          <div class="card__meta">
-            <span class="year">1969</span>
-            <span class="genre">Rock</span>
-          </div>
+        <div class="rec__disc" aria-hidden="true">
+          <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
-      </article>
-
-      <!-- 5 -->
-      <article class="card" style="--a:#1f2a5c; --b:#0b0e1c; --label:#5a72e0;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">JM</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Blue</h3>
-          <p class="card__artist">Joni Mitchell</p>
-          <div class="card__meta">
-            <span class="year">1971</span>
-            <span class="genre">Folk</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 6 -->
-      <article class="card" style="--a:#3a2260; --b:#130b1e; --label:#a566e0;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">PF</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">The Dark Side of the Moon</h3>
-          <p class="card__artist">Pink Floyd</p>
-          <div class="card__meta">
-            <span class="year">1973</span>
-            <span class="genre">Prog Rock</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 7 -->
-      <article class="card" style="--a:#6b3f1f; --b:#1d120a; --label:#e0954b;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">MG</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">What's Going On</h3>
-          <p class="card__artist">Marvin Gaye</p>
-          <div class="card__meta">
-            <span class="year">1971</span>
-            <span class="genre">Soul</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 8 -->
-      <article class="card" style="--a:#6b1f3a; --b:#1e0b12; --label:#e05a8a;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">TH</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Remain in Light</h3>
-          <p class="card__artist">Talking Heads</p>
-          <div class="card__meta">
-            <span class="year">1980</span>
-            <span class="genre">New Wave</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 9 -->
-      <article class="card" style="--a:#1f5c4d; --b:#0a1e19; --label:#4bd9b0;">
-        <div class="card__art">
-          <div class="cover">
-            <span class="cover__mark">MB</span>
-            <span class="cover__sleeve"></span>
-          </div>
-          <div class="vinyl">
-            <div class="vinyl__disc">
-              <span class="vinyl__label"></span>
-              <span class="vinyl__hole"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Loveless</h3>
-          <p class="card__artist">My Bloody Valentine</p>
-          <div class="card__meta">
-            <span class="year">1991</span>
-            <span class="genre">Shoegaze</span>
-          </div>
-        </div>
+        <template class="rec__tracks">
+          <li>Born Under Punches</li><li>Crosseyed and Painless</li>
+          <li>The Great Curve</li><li>Once in a Lifetime</li><li>Listening Wind</li>
+        </template>
       </article>
 
     </div>
+
+    <!-- side arrows -->
+    <button class="arrow arrow--prev" id="prev" type="button"
+            aria-label="Previous album">‹</button>
+    <button class="arrow arrow--next" id="next" type="button"
+            aria-label="Next album">›</button>
+
+    <!-- detail panel -->
+    <aside class="detail" id="detail" hidden aria-live="polite">
+      <button class="detail__close" id="detailClose" type="button"
+              aria-label="Close album details">×</button>
+      <p class="detail__eyebrow">Now playing</p>
+      <h2 class="detail__title" id="detailTitle">—</h2>
+      <p class="detail__artist" id="detailArtist">—</p>
+      <div class="detail__meta">
+        <span class="detail__year" id="detailYear">—</span>
+        <span class="detail__genre" id="detailGenre">—</span>
+      </div>
+      <p class="detail__label">Tracklist</p>
+      <ol class="detail__tracks" id="detailTracks"></ol>
+    </aside>
+
   </main>
 
-  <!-- =========================== FOOTER =========================== -->
+  <!-- ============================= BOTTOM ============================ -->
+  <section class="bottom">
+    <h1 class="bottom__title">Your music, reimagined as records.</h1>
+    <p class="bottom__sub">Pick an album to start.</p>
+
+    <div class="dots" id="dots" role="tablist" aria-label="Browse albums">
+      <button class="dot" type="button" role="tab" aria-label="Album 1"></button>
+      <button class="dot" type="button" role="tab" aria-label="Album 2"></button>
+      <button class="dot" type="button" role="tab" aria-label="Album 3"></button>
+      <button class="dot" type="button" role="tab" aria-label="Album 4"></button>
+    </div>
+  </section>
+
   <footer class="footer">
-    <div class="footer__disc" aria-hidden="true"></div>
-    <p class="footer__note">Last updated: 18 October 2026</p>
-    <p class="footer__sub">Pressed with care · Play loud, but not too loud</p>
+    <p>Last updated: 18 October 2026</p>
+    <p class="footer__sub">Pure HTML, CSS and a little JavaScript · No frameworks</p>
   </footer>
 
+  <script src="/script.js" defer></script>
 </body>
 </html>
