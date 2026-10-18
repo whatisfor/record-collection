@@ -1,16 +1,19 @@
-# My Record Collection
+# The Wall — My Record Collection
 
-A static showcase page for a vinyl collection. **Pure HTML + CSS** — no
-JavaScript, no frameworks, no build step, no external assets.
+An interactive vinyl record wall: tilted sleeves stacked in diagonal rows,
+featured albums layered in 3D that slide out of the stack, and a detail panel
+with tracklists.
 
-## Structure
+**Single lightweight page.** No frameworks, no build step, no external assets
+(icons and grain are inline SVG data URIs).
 
 ```
 public/
-  index.html   # hero, 9 record cards, footer
-  styles.css   # all styling and animation
-  404.html     # served for unknown routes
-wrangler.jsonc # Cloudflare Workers static-assets config
+  index.html   # wall, 4 featured albums, detail panel, tracklists
+  styles.css   # all styling, 3D transforms, animation
+  script.js    # ~7 KB: selection, cycling, optional Web Audio crackle
+  404.html
+wrangler.jsonc
 ```
 
 ## Run locally
@@ -25,36 +28,74 @@ npx --yes serve public
 npx wrangler deploy
 ```
 
-## How the cards work
+## How it works
 
-Each card sets three custom properties inline:
+### Layering
 
-```html
-<article class="card" style="--a:#7a4526; --b:#241408; --label:#e8b04b;">
+| Layer | z-index | Contents |
+|---|---|---|
+| `.lights` | 0 | fixed warm spotlight cones |
+| `.wall` | 1 | 20 decorative sleeves, 4 rows, rotated −5° |
+| `.featured` | 20 | the 4 interactive albums (`preserve-3d`) |
+| hover / arrows | 70 | side arrow buttons |
+| `.detail` | 80 | tracklist panel |
+| `.grain` | 9998 | animated film grain |
+
+The stage sets `perspective: 1500px`; `.featured` sets
+`transform-style: preserve-3d`, so each card's `translateZ` is real depth.
+
+### Diagonal rows top-left → bottom-right
+
+```css
+.wall__row { margin-left: calc(var(--r) * 7vw); }   /* each row steps right */
+.wall__row + .wall__row { margin-top: -30px; }       /* rows overlap        */
+.sleeve { margin-left: -46px; }                      /* sleeves overlap     */
+z-index: var(--r);                                   /* lower rows in front */
 ```
 
-| Property | Purpose |
-|---|---|
-| `--a` | cover gradient top colour |
-| `--b` | cover gradient bottom colour |
-| `--label` | centre label colour on the vinyl disc |
+### Featured cascade
 
-The record sits behind the sleeve at `z-index: 1`. On `:hover` it slides out
-via `transform: translateX(38%)` on the wrapper while the inner `.vinyl__disc`
-rotates — splitting translation and rotation across two elements so the
-animation doesn't overwrite the offset.
+Each card carries `--i` (0–3), which drives its offset from centre:
 
-## Adding a record
+```css
+translate(calc((var(--i) - 1.5) * 11vw), calc((var(--i) - 1.5) * 7vh))
+```
 
-Copy any `<article class="card">` block, then update:
+`slideOut` animates them out of the stack one at a time via
+`animation-delay: calc(var(--i) * .16s)`.
 
-- the monogram in `cover__mark`
-- `card__title`, `card__artist`
-- `year` and `genre`
-- the three inline colour custom properties
+### Interaction states
 
-Bump the "Nine records" line in `.collection__count` if you change the count.
+| State | Trigger | Effect |
+|---|---|---|
+| hover | `.rec:hover:not(.is-active)` | lifts −30px, `translateZ(95px)`, disc spins + emerges |
+| active | `.rec.is-active` | centres, `translateZ(240px)`, `scale(1.16)` |
+| faded back | `.featured.has-active .rec:not(.is-active)` | `opacity .34`, `blur(1.4px)`, pushed to `translateZ(-130px)` |
+
+### Content lives in HTML
+
+Album metadata is in `data-title` / `data-artist` / `data-year` / `data-genre`
+on each card; tracklists sit inside an inert `<template class="rec__tracks">`.
+`script.js` reads both — nothing is hard-coded in JavaScript.
+
+### Vinyl crackle
+
+Off by default (browsers require a user gesture for audio). The **Crackle**
+button creates an `AudioContext`, fills a 4-second buffer with low-level
+surface noise plus sparse decaying pops, and runs it through a highpass →
+lowpass → gain chain. The context is closed on `pagehide`.
+
+## Adding an album
+
+1. Copy an `<article class="rec">` block and bump `--i`.
+2. Set `--a`, `--b`, `--label`, `--rot`, and the `data-*` attributes.
+3. Add its tracklist inside the card's `<template>`.
+4. Add a matching `<button class="dot">` in `#dots`.
+
+Note `--i` must stay contiguous from 0 — it drives both cascade position and
+entrance stagger.
 
 ## Motion
 
-All spinning elements stop under `prefers-reduced-motion: reduce`.
+Everything animation-related stops under `prefers-reduced-motion: reduce`,
+including the film grain and the disc spin.
