@@ -2,16 +2,18 @@
 
 An interactive vinyl record wall: tilted sleeves stacked in diagonal rows,
 featured albums layered in 3D that slide out of the stack, and a detail panel
-with tracklists.
+with tracklists — followed by three scroll sections (taste, artists, quiz).
 
-**Single lightweight page.** No frameworks, no build step, no external assets
-(icons and grain are inline SVG data URIs).
+**Single lightweight page.** No frameworks and no build step. Icons and grain
+are inline SVG data URIs. The 24 album covers are real artwork loaded from the
+Cover Art Archive; if one fails to load, a tinted sleeve with the album title
+takes its place (with one automatic retry first).
 
 ```
 public/
-  index.html   # wall, 4 featured albums, detail panel, tracklists
-  styles.css   # all styling, 3D transforms, animation
-  script.js    # ~7 KB: selection, cycling, optional Web Audio crackle
+  index.html   # wall, 4 featured albums, detail panel, 3 scroll sections
+  styles.css   # all styling, 3D transforms, checklists, animation
+  script.js    # selection, cycling, covers, checklists, quiz, gear sound
   404.html
 wrangler.jsonc
 ```
@@ -78,12 +80,46 @@ Album metadata is in `data-title` / `data-artist` / `data-year` / `data-genre`
 on each card; tracklists sit inside an inert `<template class="rec__tracks">`.
 `script.js` reads both — nothing is hard-coded in JavaScript.
 
-### Vinyl crackle
+### Album covers
 
-Off by default (browsers require a user gesture for audio). The **Crackle**
-button creates an `AudioContext`, fills a 4-second buffer with low-level
-surface noise plus sparse decaying pops, and runs it through a highpass →
-lowpass → gain chain. The context is closed on `pagehide`.
+Every sleeve and featured card carries a real cover image from
+`coverartarchive.org/release-group/{mbid}/front-250`. The image is absolutely
+positioned and `object-fit: cover`, so every cover renders the same square even
+when the source art is a different ratio. Titles sit on a bottom scrim to stay
+legible over any artwork.
+
+Because Cover Art Archive redirects to archive.org (which occasionally 500s a
+first request), a failed load retries once after a second via a probe request.
+If that also fails, JS adds `.no-cover` to the parent, which hides the `<img>`
+and reveals the tinted sleeve and album title already present in the markup —
+so the layout never breaks.
+
+### Scroll sections
+
+Below the stage, three sections run on native checkboxes and radios (with
+`.vh` visually-hidden inputs, so they stay keyboard-operable):
+
+| Section | Control | Behaviour |
+|---|---|---|
+| A · Your taste in music | 8 genre checkboxes | toggles + live "n of 8" count |
+| B · Favorite artists | 8 artist checkboxes | multi-select + live count |
+| C · Quick quiz | 3 × 3 radio groups | result card appears only once all 3 are answered |
+
+Checked states are styled by `:has(input:checked)` **and** a JS-toggled
+`.is-on` class (the class guarantees the highlight even where `:has()` isn't
+honoured in the cascade). The quiz scores each answer toward the same eight
+genres used in Section A and shows the winner with a note.
+
+### Turning gears
+
+Off by default (browsers require a user gesture for audio). The **Gears**
+button creates an `AudioContext` and fills a 4-second looping buffer with a
+soft gear-train whir plus two meshing wheels — a 10-teeth/s main wheel and a
+quieter 25-teeth/s pinion — each tooth a short inharmonic metallic ping with
+random variance, and the whole thing wobbling once per revolution. Teeth are
+spaced evenly across the buffer so the loop seam never clips, and the result
+runs through a highpass → lowpass → gain chain. The context is closed on
+`pagehide`.
 
 ## Adding an album
 
