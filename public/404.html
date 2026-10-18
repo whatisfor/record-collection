@@ -8,16 +8,31 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header class="hero">
-    <div class="hero__inner">
-      <div class="hero__text">
-        <p class="hero__eyebrow">404 · Needle dropped off the record</p>
-        <h1 class="hero__title">Nothing<br>Playing Here</h1>
-        <p class="hero__tagline">That side of the sleeve is empty — the page you asked for doesn't exist.</p>
-        <div class="hero__rule" aria-hidden="true"></div>
-        <p style="margin-top:28px;"><a href="/" style="color:#e8a34b;">← Back to the collection</a></p>
-      </div>
-    </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="lights" aria-hidden="true">
+    <span class="lights__cone lights__cone--a"></span>
+    <span class="lights__cone lights__cone--b"></span>
+    <span class="lights__cone lights__cone--c"></span>
+  </div>
+
+  <header class="topbar">
+    <span class="topbar__brand">The Wall</span>
   </header>
+
+  <section class="bottom" style="padding-top: clamp(90px, 22vh, 220px);">
+    <p class="bottom__sub" style="color:#e8a34b; letter-spacing:.28em; text-transform:uppercase; font-size:.72rem; margin-top:0;">
+      404 · Needle dropped off the record
+    </p>
+    <h1 class="bottom__title">Nothing on this side.</h1>
+    <p class="bottom__sub">That page skipped — it doesn't exist in this collection.</p>
+    <p style="margin-top:34px;"><a class="backlink" href="/">Back to the wall</a></p>
+  </section>
+
+  <footer class="footer">
+    <p>Last updated: 18 October 2026</p>
+    <p class="footer__sub">Pure HTML, CSS and a little JavaScript · No frameworks</p>
+  </footer>
+
 </body>
 </html>
