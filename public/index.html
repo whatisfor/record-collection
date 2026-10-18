@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Record Collection — The Wall</title>
-  <meta name="description" content="A wall of vinyl: tilted sleeves, layered albums and records that slide out toward you. Your music, reimagined as records.">
+  <meta name="description" content="A wall of vinyl with real album covers, plus taste, artist and vibe pickers. Your music, reimagined as records.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%B5%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://coverartarchive.org">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -22,44 +23,104 @@
   <header class="topbar">
     <span class="topbar__brand">The Wall</span>
     <button class="sound" id="soundToggle" type="button"
-            aria-pressed="false" title="Toggle vinyl crackle">
+            aria-pressed="false" title="Toggle the turning-gear sound">
       <span class="sound__dot" aria-hidden="true"></span>
-      <span class="sound__label">Crackle off</span>
+      <span class="sound__label">Gears off</span>
     </button>
   </header>
 
   <!-- ============================= STAGE ============================= -->
   <main class="stage" id="stage">
 
-    <!-- background wall: decorative, diagonal rows top-left -> bottom-right -->
+    <!-- background wall: real covers, diagonal rows top-left -> bottom-right -->
     <div class="wall" aria-hidden="true">
       <div class="wall__row" style="--r:0">
-        <span class="sleeve" style="--t:-4deg; --y:6px;  --a:#7a4526; --b:#2a1a10;">FM</span>
-        <span class="sleeve" style="--t:3deg;  --y:-8px; --a:#8a2020; --b:#2b0f0f;">MJ</span>
-        <span class="sleeve" style="--t:-2deg; --y:10px; --a:#1f3d5c; --b:#0d1a26;">MD</span>
-        <span class="sleeve" style="--t:5deg;  --y:-4px; --a:#4a6b1f; --b:#18210c;">TB</span>
-        <span class="sleeve" style="--t:-3deg; --y:8px;  --a:#1f2a5c; --b:#0e1224;">JM</span>
+        <span class="sleeve" style="--t:-4deg; --y:6px; --a:#8a2020; --b:#1a0a0a;">
+          <img class="cover" src="https://coverartarchive.org/release-group/4d9ec1c2-58ec-48a4-aa0a-916718adead0/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">1989</span></span>
+        </span>
+        <span class="sleeve" style="--t:3deg; --y:-8px; --a:#1f3d5c; --b:#0b141d;">
+          <img class="cover" src="https://coverartarchive.org/release-group/a09823c3-9fe5-4529-ab5e-aceea40810e2/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Endless Summer Vacation</span></span>
+        </span>
+        <span class="sleeve" style="--t:-2deg; --y:10px; --a:#7a4526; --b:#241408;">
+          <img class="cover" src="https://coverartarchive.org/release-group/9162580e-5df4-32de-80cc-f45a8d8a9b1d/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Abbey Road</span></span>
+        </span>
+        <span class="sleeve" style="--t:5deg; --y:-4px; --a:#3a2260; --b:#130b1e;">
+          <img class="cover" src="https://coverartarchive.org/release-group/f5093c06-23e3-404f-aeaa-40f72885ee3a/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">The Dark Side of the Moon</span></span>
+        </span>
+        <span class="sleeve" style="--t:-3deg; --y:8px; --a:#1f5c4d; --b:#0c2620;">
+          <img class="cover" src="https://coverartarchive.org/release-group/c1fa4d2c-ec62-37d5-b01d-6df7f8fd2c90/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">What's Going On</span></span>
+        </span>
       </div>
       <div class="wall__row" style="--r:1">
-        <span class="sleeve" style="--t:4deg;  --y:-6px; --a:#3a2260; --b:#160e26;">PF</span>
-        <span class="sleeve" style="--t:-5deg; --y:9px;  --a:#6b3f1f; --b:#24170d;">MG</span>
-        <span class="sleeve" style="--t:2deg;  --y:-10px;--a:#6b1f3a; --b:#260e17;">TH</span>
-        <span class="sleeve" style="--t:-3deg; --y:5px;  --a:#1f5c4d; --b:#0c2620;">MB</span>
-        <span class="sleeve" style="--t:6deg;  --y:-3px; --a:#5c4a1f; --b:#241e0c;">SD</span>
+        <span class="sleeve" style="--t:4deg; --y:-6px; --a:#5c1f3a; --b:#240e1e;">
+          <img class="cover" src="https://coverartarchive.org/release-group/f6b1b900-6108-32f0-abbd-2855af9151eb/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Remain in Light</span></span>
+        </span>
+        <span class="sleeve" style="--t:-5deg; --y:9px; --a:#5c4a1f; --b:#241e0c;">
+          <img class="cover" src="https://coverartarchive.org/release-group/21590daa-5b86-327d-b090-05f2546d2d4a/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Nevermind</span></span>
+        </span>
+        <span class="sleeve" style="--t:2deg; --y:-10px; --a:#1f4a5c; --b:#0c1e26;">
+          <img class="cover" src="https://coverartarchive.org/release-group/b1392450-e666-3926-a536-22c65f834433/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">OK Computer</span></span>
+        </span>
+        <span class="sleeve" style="--t:-3deg; --y:5px; --a:#7a2618; --b:#2b100c;">
+          <img class="cover" src="https://coverartarchive.org/release-group/84216190-e46f-4cf1-8a28-76910183be38/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Discovery</span></span>
+        </span>
+        <span class="sleeve" style="--t:6deg; --y:-3px; --a:#4a1f5c; --b:#1c0e24;">
+          <img class="cover" src="https://coverartarchive.org/release-group/0da340a0-6ad7-4fc2-a272-6f94393a7831/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Blonde</span></span>
+        </span>
       </div>
       <div class="wall__row" style="--r:2">
-        <span class="sleeve" style="--t:-6deg; --y:7px;  --a:#5c1f4a; --b:#240e1e;">SW</span>
-        <span class="sleeve" style="--t:3deg;  --y:-9px; --a:#1f4a5c; --b:#0c1e26;">KT</span>
-        <span class="sleeve" style="--t:-2deg; --y:4px;  --a:#7a2618; --b:#2b100c;">AR</span>
-        <span class="sleeve" style="--t:5deg;  --y:-7px; --a:#2b5c1f; --b:#10240c;">NL</span>
-        <span class="sleeve" style="--t:-4deg; --y:11px; --a:#4a1f5c; --b:#1c0e24;">BL</span>
+        <span class="sleeve" style="--t:-6deg; --y:7px; --a:#2b5c1f; --b:#10240c;">
+          <img class="cover" src="https://coverartarchive.org/release-group/8f892c1b-0709-4cf4-9711-493892a9eb9b/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Ctrl</span></span>
+        </span>
+        <span class="sleeve" style="--t:3deg; --y:-9px; --a:#5c2b1f; --b:#24110c;">
+          <img class="cover" src="https://coverartarchive.org/release-group/72375978-a9a1-4254-b957-85565c716b7e/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">When We All Fall Asleep, Where Do We Go?</span></span>
+        </span>
+        <span class="sleeve" style="--t:-2deg; --y:4px; --a:#1f305c; --b:#0c1424;">
+          <img class="cover" src="https://coverartarchive.org/release-group/e05f9927-e24b-41c5-928d-d0e008a12444/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Divide</span></span>
+        </span>
+        <span class="sleeve" style="--t:5deg; --y:-7px; --a:#5c511f; --b:#24200c;">
+          <img class="cover" src="https://coverartarchive.org/release-group/05e6b686-b590-472a-9924-e623b223cb6d/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Harry Styles</span></span>
+        </span>
+        <span class="sleeve" style="--t:-4deg; --y:11px; --a:#1f5c3a; --b:#0c2417;">
+          <img class="cover" src="https://coverartarchive.org/release-group/857db798-5c31-4d5f-991a-6667f41d8899/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Scorpion</span></span>
+        </span>
       </div>
       <div class="wall__row" style="--r:3">
-        <span class="sleeve" style="--t:2deg;  --y:-5px; --a:#5c511f; --b:#24200c;">AV</span>
-        <span class="sleeve" style="--t:-5deg; --y:8px;  --a:#1f305c; --b:#0c1424;">CE</span>
-        <span class="sleeve" style="--t:4deg;  --y:-8px; --a:#5c2b1f; --b:#24110c;">GT</span>
-        <span class="sleeve" style="--t:-3deg; --y:6px;  --a:#1f5c3a; --b:#0c2417;">PS</span>
-        <span class="sleeve" style="--t:6deg;  --y:-4px; --a:#5c1f2b; --b:#240e13;">ID</span>
+        <span class="sleeve" style="--t:2deg; --y:-5px; --a:#5c1f2b; --b:#240e13;">
+          <img class="cover" src="https://coverartarchive.org/release-group/499c19c8-0dab-4824-884b-6191d145e95b/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">good kid, m.A.A.d city</span></span>
+        </span>
+        <span class="sleeve" style="--t:-5deg; --y:8px; --a:#6b3f1f; --b:#24170d;">
+          <img class="cover" src="https://coverartarchive.org/release-group/c1f22e07-7bdf-4a4f-8b50-7747c1091ef6/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Lemonade</span></span>
+        </span>
+        <span class="sleeve" style="--t:4deg; --y:-8px; --a:#6b1f3a; --b:#260e17;">
+          <img class="cover" src="https://coverartarchive.org/release-group/42d725fb-a8b7-388c-8866-3b02789af326/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Blue</span></span>
+        </span>
+        <span class="sleeve" style="--t:-3deg; --y:6px; --a:#1f2a5c; --b:#0e1224;">
+          <img class="cover" src="https://coverartarchive.org/release-group/8588c5a5-b491-37a4-8d51-2227346a072e/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Aja</span></span>
+        </span>
+        <span class="sleeve" style="--t:6deg; --y:-4px; --a:#4a6b1f; --b:#18210c;">
+          <img class="cover" src="https://coverartarchive.org/release-group/6854b34f-024d-31f6-81dc-92b3aa832ec9/front-250" alt="" fetchpriority="low" decoding="async">
+          <span class="sleeve__fb"><span class="sleeve__fb-title">Trans-Europe Express</span></span>
+        </span>
       </div>
     </div>
 
@@ -67,75 +128,67 @@
     <div class="featured" id="featured">
 
       <article class="rec" data-id="0" role="button" tabindex="0"
-               aria-expanded="false" aria-label="Rumours by Fleetwood Mac"
-               data-title="Rumours" data-artist="Fleetwood Mac"
-               data-year="1977" data-genre="Rock"
-               style="--i:0; --rot:-5deg; --a:#7a4526; --b:#241408; --label:#e8b04b;">
+               aria-expanded="false" aria-label="Starboy by The Weeknd"
+               data-title="Starboy" data-artist="The Weeknd"
+               data-year="2016" data-genre="R&amp;B"
+               style="--i:0; --rot:-5deg; --a:#8a1f1f; --b:#170a0a; --label:#e05a4a;">
         <div class="rec__sleeve">
-          <span class="rec__mono">FM</span>
-          <span class="rec__name">Rumours</span>
+          <img class="cover rec__cover" src="https://coverartarchive.org/release-group/ceaa5c39-91c7-4c8a-886c-85b11fa8a1f6/front-250" alt="Cover of Starboy by The Weeknd" decoding="async">
+          <span class="rec__name">Starboy</span>
+          <span class="sleeve__fb-title rec__fb">Starboy</span>
         </div>
         <div class="rec__disc" aria-hidden="true">
           <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
-        <template class="rec__tracks">
-          <li>Second Hand News</li><li>Dreams</li>
-          <li>Never Going Back Again</li><li>Don't Stop</li><li>Go Your Own Way</li>
-        </template>
+        <template class="rec__tracks"><li>Starboy</li><li>Party Monster</li><li>False Alarm</li><li>Reminder</li><li>Rockin’</li></template>
       </article>
 
       <article class="rec" data-id="1" role="button" tabindex="0"
-               aria-expanded="false" aria-label="Kind of Blue by Miles Davis"
-               data-title="Kind of Blue" data-artist="Miles Davis"
-               data-year="1959" data-genre="Jazz"
-               style="--i:1; --rot:4deg; --a:#1f3d5c; --b:#0b141d; --label:#5aa3e0;">
+               aria-expanded="false" aria-label="Midnights by Taylor Swift"
+               data-title="Midnights" data-artist="Taylor Swift"
+               data-year="2022" data-genre="Pop"
+               style="--i:1; --rot:4deg; --a:#1f2a66; --b:#0a0e1e; --label:#93a7f0;">
         <div class="rec__sleeve">
-          <span class="rec__mono">MD</span>
-          <span class="rec__name">Kind of Blue</span>
+          <img class="cover rec__cover" src="https://coverartarchive.org/release-group/0dcc84fb-c592-46e9-ba92-a52bb44dd553/front-250" alt="Cover of Midnights by Taylor Swift" decoding="async">
+          <span class="rec__name">Midnights</span>
+          <span class="sleeve__fb-title rec__fb">Midnights</span>
         </div>
         <div class="rec__disc" aria-hidden="true">
           <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
-        <template class="rec__tracks">
-          <li>So What</li><li>Freddie Freeloader</li>
-          <li>Blue in Green</li><li>All Blues</li><li>Flamenco Sketches</li>
-        </template>
+        <template class="rec__tracks"><li>Lavender Haze</li><li>Maroon</li><li>Anti-Hero</li><li>Snow on the Beach</li><li>You’re on Your Own, Kid</li></template>
       </article>
 
       <article class="rec" data-id="2" role="button" tabindex="0"
-               aria-expanded="false" aria-label="The Dark Side of the Moon by Pink Floyd"
-               data-title="The Dark Side of the Moon" data-artist="Pink Floyd"
-               data-year="1973" data-genre="Prog Rock"
-               style="--i:2; --rot:-3deg; --a:#3a2260; --b:#130b1e; --label:#a566e0;">
+               aria-expanded="false" aria-label="Eternal Sunshine by Ariana Grande"
+               data-title="Eternal Sunshine" data-artist="Ariana Grande"
+               data-year="2024" data-genre="Pop"
+               style="--i:2; --rot:-3deg; --a:#1f456b; --b:#0b1620; --label:#8fd0ee;">
         <div class="rec__sleeve">
-          <span class="rec__mono">PF</span>
-          <span class="rec__name">Dark Side</span>
+          <img class="cover rec__cover" src="https://coverartarchive.org/release-group/fb992c06-9807-4ffd-90d8-115db5d513f6/front-250" alt="Cover of Eternal Sunshine by Ariana Grande" decoding="async">
+          <span class="rec__name">Eternal Sunshine</span>
+          <span class="sleeve__fb-title rec__fb">Eternal Sunshine</span>
         </div>
         <div class="rec__disc" aria-hidden="true">
           <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
-        <template class="rec__tracks">
-          <li>Speak to Me</li><li>Breathe</li>
-          <li>Time</li><li>The Great Gig in the Sky</li><li>Money</li>
-        </template>
+        <template class="rec__tracks"><li>intro (end of the world)</li><li>bye</li><li>don’t wanna break up again</li><li>Saturn Returns Interlude</li><li>eternal sunshine</li></template>
       </article>
 
       <article class="rec" data-id="3" role="button" tabindex="0"
-               aria-expanded="false" aria-label="Remain in Light by Talking Heads"
-               data-title="Remain in Light" data-artist="Talking Heads"
-               data-year="1980" data-genre="New Wave"
-               style="--i:3; --rot:5deg; --a:#6b1f3a; --b:#1e0b12; --label:#e05a8a;">
+               aria-expanded="false" aria-label="golden hour by JVKE"
+               data-title="golden hour" data-artist="JVKE"
+               data-year="2022" data-genre="Pop"
+               style="--i:3; --rot:5deg; --a:#8a5a1f; --b:#241708; --label:#e8c07a;">
         <div class="rec__sleeve">
-          <span class="rec__mono">TH</span>
-          <span class="rec__name">Remain in Light</span>
+          <img class="cover rec__cover" src="https://coverartarchive.org/release-group/340c3e85-fca9-4e57-905d-e444b6167210/front-250" alt="Cover of golden hour by JVKE" decoding="async">
+          <span class="rec__name">golden hour</span>
+          <span class="sleeve__fb-title rec__fb">golden hour</span>
         </div>
         <div class="rec__disc" aria-hidden="true">
           <span class="rec__label"></span><span class="rec__hole"></span>
         </div>
-        <template class="rec__tracks">
-          <li>Born Under Punches</li><li>Crosseyed and Painless</li>
-          <li>The Great Curve</li><li>Once in a Lifetime</li><li>Listening Wind</li>
-        </template>
+        <template class="rec__tracks"><li>golden hour</li></template>
       </article>
 
     </div>
@@ -176,9 +229,193 @@
     </div>
   </section>
 
+  <!-- ======================= JUMP NAV / SECTIONS ===================== -->
+  <nav class="subnav" aria-label="Jump to a section">
+    <a class="subnav__link" href="#taste">Your taste</a>
+    <a class="subnav__link" href="#artists">Favorite artists</a>
+    <a class="subnav__link" href="#quiz">Quick quiz</a>
+  </nav>
+
+  <!-- ------------------------- SECTION A ---------------------------- -->
+  <section class="panel" id="taste" aria-labelledby="taste-h">
+    <p class="panel__eyebrow">Section A</p>
+    <h2 class="panel__title" id="taste-h">Your taste in music</h2>
+    <p class="panel__intro">Tick everything you actually listen to.</p>
+
+    <div class="chips" id="chips">
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="Pop">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">Pop</span>
+          </label>
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="Rock">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">Rock</span>
+          </label>
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="Jazz">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">Jazz</span>
+          </label>
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="Hip-Hop">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">Hip-Hop</span>
+          </label>
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="R&amp;B">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">R&amp;B</span>
+          </label>
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="Electronic">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">Electronic</span>
+          </label>
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="Classical">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">Classical</span>
+          </label>
+          <label class="chip">
+            <input class="vh" type="checkbox" name="genre" value="Indie">
+            <span class="chip__mark" aria-hidden="true">✓</span>
+            <span class="chip__label">Indie</span>
+          </label>
+    </div>
+
+    <p class="counter" id="genreCount" aria-live="polite">
+      <span class="counter__num">0</span> of 8 selected
+    </p>
+  </section>
+
+  <!-- ------------------------- SECTION B ---------------------------- -->
+  <section class="panel" id="artists" aria-labelledby="artists-h">
+    <p class="panel__eyebrow">Section B</p>
+    <h2 class="panel__title" id="artists-h">Favorite artists</h2>
+    <p class="panel__intro">Pick as many as you like — no limits here.</p>
+
+    <div class="artist-grid" id="artistGrid">
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="The Weeknd">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">The Weeknd</span>
+          </label>
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="Taylor Swift">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">Taylor Swift</span>
+          </label>
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="Miley Cyrus">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">Miley Cyrus</span>
+          </label>
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="Drake">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">Drake</span>
+          </label>
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="Billie Eilish">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">Billie Eilish</span>
+          </label>
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="Ed Sheeran">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">Ed Sheeran</span>
+          </label>
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="Beyoncé">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">Beyoncé</span>
+          </label>
+          <label class="artist">
+            <input class="vh" type="checkbox" name="artist" value="Harry Styles">
+            <span class="artist__mark" aria-hidden="true">✓</span>
+            <span class="artist__name">Harry Styles</span>
+          </label>
+    </div>
+
+    <p class="counter" id="artistCount" aria-live="polite">
+      <span class="counter__num">0</span> of 8 selected
+    </p>
+  </section>
+
+  <!-- ------------------------- SECTION C ---------------------------- -->
+  <section class="panel" id="quiz" aria-labelledby="quiz-h">
+    <p class="panel__eyebrow">Section C</p>
+    <h2 class="panel__title" id="quiz-h">Quick quiz: what's your vibe?</h2>
+    <p class="panel__intro">Three questions, one genre at the end.</p>
+
+    <div class="quiz" id="quizBox">
+        <fieldset class="q">
+          <legend class="q__legend">What mood are you in?</legend>
+          <div class="q__opts">
+            <label class="answer">
+              <input class="vh" type="radio" name="mood" value="Chill">
+              <span class="answer__label">Chill</span>
+            </label>
+            <label class="answer">
+              <input class="vh" type="radio" name="mood" value="Energetic">
+              <span class="answer__label">Energetic</span>
+            </label>
+            <label class="answer">
+              <input class="vh" type="radio" name="mood" value="Nostalgic">
+              <span class="answer__label">Nostalgic</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend class="q__legend">Setting?</legend>
+          <div class="q__opts">
+            <label class="answer">
+              <input class="vh" type="radio" name="setting" value="Late night drive">
+              <span class="answer__label">Late night drive</span>
+            </label>
+            <label class="answer">
+              <input class="vh" type="radio" name="setting" value="Coffee shop">
+              <span class="answer__label">Coffee shop</span>
+            </label>
+            <label class="answer">
+              <input class="vh" type="radio" name="setting" value="Party">
+              <span class="answer__label">Party</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend class="q__legend">Preferred era?</legend>
+          <div class="q__opts">
+            <label class="answer">
+              <input class="vh" type="radio" name="era" value="70s">
+              <span class="answer__label">70s</span>
+            </label>
+            <label class="answer">
+              <input class="vh" type="radio" name="era" value="90s">
+              <span class="answer__label">90s</span>
+            </label>
+            <label class="answer">
+              <input class="vh" type="radio" name="era" value="Today">
+              <span class="answer__label">Today</span>
+            </label>
+          </div>
+        </fieldset>
+    </div>
+
+    <div class="result" id="quizResult" hidden aria-live="polite">
+      <p class="result__eyebrow">Your vibe</p>
+      <p class="result__genre" id="resultGenre">—</p>
+      <p class="result__note" id="resultNote">—</p>
+    </div>
+  </section>
+
   <footer class="footer">
     <p>Last updated: 18 October 2026</p>
-    <p class="footer__sub">Pure HTML, CSS and a little JavaScript · No frameworks</p>
+    <p class="footer__sub">Pure HTML, CSS and a little JavaScript · No frameworks · Covers from Cover Art Archive</p>
   </footer>
 
   <script src="/script.js" defer></script>
