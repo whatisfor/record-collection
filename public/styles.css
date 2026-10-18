@@ -478,7 +478,7 @@ body {
 
 .detail {
   position: absolute;
-  right: clamp(16px, 3vw, 44px);
+  left: 25%;                    /* left side of the screen, wall visible to the right */
   top: 50%;
   transform: translateY(-50%);
   z-index: 80;
@@ -864,8 +864,7 @@ body {
 .quiz { display: grid; gap: 30px; }
 .q { margin: 0; padding: 0; border: 0; min-width: 0; }
 .q__legend {
-  float: left;                 /* keeps <legend> out of the grid flow */
-  width: 100%;
+  width: 100%;                 /* question sits on its own line, options below */
   padding: 0 0 14px;
   font-family: Georgia, serif;
   font-size: 1.12rem;
